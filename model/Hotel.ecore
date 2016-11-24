@@ -47,11 +47,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Chambre">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="MaxByRoom MaxByRom2"/>
+      <details key="constraints" value="MaxByRoom MaxByRom2 validNumberEtage"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="MaxByRoom" value="loge->select(p1 : Personne | p1.age > 4)->size() &lt; nbLits &#xA;&#x9;&#x9;                       and loge->select(p1 : Personne | p1.age &lt; 4) -> size() &lt;= 1"/>
-      <details key="MaxByRom2" value="loge->size() &lt; self.nbLits or  loge->size() &lt;= self.nbLits + 1 and loge->exists(p:Personne| p.age &lt; 4)"/>
+      <details key="MaxByRoom" value="hote->select(p1 : Personne | p1.age > 4)->size() &lt; nbLits &#xA;&#x9;&#x9;                       and hote->select(p1 : Personne | p1.age &lt; 4) -> size() &lt;= 1"/>
+      <details key="MaxByRom2" value="hote->size() &lt; self.nbLits or  hote->size() &lt;= self.nbLits + 1 and hote->exists(p:Personne| p.age &lt; 4)"/>
+      <details key="validNumberEtage" value="etage >= hotel.etageMin or etage &lt;= hotel.etageMax"/>
     </eAnnotations>
     <eOperations name="repeindre">
       <eParameters name="couleur" eType="#//Couleur"/>
@@ -65,7 +66,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="hotel" lowerBound="1" eType="#//Hotel"
         eOpposite="#//Hotel/chambre"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="salledebain" eType="#//SalleDeBain"
-        eOpposite="#//SalleDeBain/chambre"/>
+        eOpposite="#//SalleDeBain/loge"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="client" eType="#//Personne"
         eOpposite="#//Personne/location"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="hote" upperBound="-1" eType="#//Personne"
@@ -85,7 +86,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nbUtilisateurs" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="chambre" eType="#//Chambre"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loge" eType="#//Chambre"
         eOpposite="#//Chambre/salledebain"/>
   </eClassifiers>
 </ecore:EPackage>
